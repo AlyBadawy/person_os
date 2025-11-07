@@ -13,6 +13,10 @@ require "action_text/engine"
 require "action_view/railtie"
 require "action_cable/engine"
 # require "rails/test_unit/railtie"
+#
+
+require_relative "../app/middleware/transform_request_keys"
+require_relative "../app/middleware/transform_response_keys"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -38,5 +42,8 @@ module PersonOs
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.middleware.use TransformRequestKeys
+    config.middleware.use TransformResponseKeys
   end
 end
