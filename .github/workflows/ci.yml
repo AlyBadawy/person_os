@@ -90,15 +90,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
           bundler-cache: true
-      - name: Install dependencies
-        run: bundle install
-      - name: Wait for PostgreSQL to be ready
-        run: |
-          while ! pg_isready -h localhost -p 5432 -U postgres; do
-            sleep 1
-          done
       - name: Create and setup the database
         run: |
           bundle exec rails db:create
