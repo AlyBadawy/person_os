@@ -15,16 +15,6 @@ development:
 test:
   <<: *default
   database: person_os_test
-  # Provide the same DB for additional roles in test to simplify CI/local runs
-  cache:
-    <<: *default
-    database: person_os_test
-  queue:
-    <<: *default
-    database: person_os_test
-  cable:
-    <<: *default
-    database: person_os_test
 
 production:
   primary: &primary_production
