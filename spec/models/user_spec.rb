@@ -74,6 +74,8 @@ RSpec.describe User, type: :model do
   end
 
   describe 'associations' do
-    skip 'add tests for any associations if present'
+    it { is_expected.to have_many(:features_users).dependent(:destroy) }
+    it { is_expected.to have_many(:features).through(:features_users) }
+    it { is_expected.to have_many(:eventables).dependent(:destroy) }
   end
 end
