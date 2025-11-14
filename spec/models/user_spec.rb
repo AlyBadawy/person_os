@@ -69,11 +69,10 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'callbacks' do
-    skip 'add tests for any custom callbacks if present'
-  end
-
   describe 'associations' do
-    skip 'add tests for any associations if present'
+    it { is_expected.to have_many(:features_users).dependent(:destroy) }
+    it { is_expected.to have_many(:features).through(:features_users) }
+    it { is_expected.to have_many(:eventables).dependent(:destroy) }
+    it { is_expected.to have_many(:event_entries).dependent(:destroy) }
   end
 end
