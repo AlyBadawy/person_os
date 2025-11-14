@@ -7,7 +7,7 @@ RSpec.describe EventablesService do
 
     it "creates an eventable and its entries in a transaction" do
       params = { name: "Test Event", eventable_type_id: eventable_type.id, starts_on: Date.current }
-      entries = [{ occured_at: Time.current }, { occured_at: 1.hour.from_now }]
+      entries = [{ occurred_at: Time.current }, { occurred_at: 1.hour.from_now }]
 
       service = described_class.new(user)
       eventable = service.create_eventable_with_entries(params, entries)
@@ -19,8 +19,8 @@ RSpec.describe EventablesService do
 
     it "rolls back the transaction if an entry creation fails" do
       params = { name: "Will Fail", eventable_type_id: eventable_type.id, starts_on: Date.current }
-      # Provide an invalid entry (missing occured_at is allowed, but let's force a validation by passing invalid key)
-      entries = [{ occured_at: Time.current }, { invalid_key: "bad" }]
+      # Provide an invalid entry (missing occurred_at is allowed, but let's force a validation by passing invalid key)
+      entries = [{ occurred_at: Time.current }, { invalid_key: "bad" }]
 
       service = described_class.new(user)
 

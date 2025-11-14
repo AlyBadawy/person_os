@@ -19,9 +19,11 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_09_045841) do
     t.datetime "created_at", null: false
     t.uuid "eventable_id"
     t.jsonb "metadata", default: {}, null: false
-    t.datetime "occured_at"
+    t.datetime "occurred_at"
     t.datetime "updated_at", null: false
+    t.uuid "user_id", null: false
     t.index ["eventable_id"], name: "index_event_entries_on_eventable_id"
+    t.index ["user_id"], name: "index_event_entries_on_user_id"
   end
 
   create_table "eventable_types", id: :uuid, default: -> { "uuidv7()" }, force: :cascade do |t|
@@ -40,7 +42,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_09_045841) do
     t.jsonb "metadata", default: {}, null: false
     t.string "name", null: false
     t.jsonb "schedule", default: {}, null: false
-    t.date "starts_on", null: false
+    t.date "starts_on"
     t.datetime "updated_at", null: false
     t.uuid "user_id", null: false
     t.index ["eventable_type_id"], name: "index_eventables_on_eventable_type_id"
@@ -93,6 +95,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_09_045841) do
   end
 
   add_foreign_key "event_entries", "eventables"
+  add_foreign_key "event_entries", "users"
   add_foreign_key "eventables", "eventable_types"
   add_foreign_key "eventables", "users"
   add_foreign_key "features_users", "features"

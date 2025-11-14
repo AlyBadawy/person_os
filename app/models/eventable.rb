@@ -14,7 +14,7 @@ class Eventable < ApplicationRecord
     return false unless active
 
     return false if date < starts_on ||
-      ends_on.present? && date > ends_on ||
+      (ends_on.present? && date > ends_on) ||
       schedule["freq"] == EventableFrequency.none
 
     return true if (

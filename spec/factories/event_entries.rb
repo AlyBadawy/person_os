@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :event_entry do
-    eventables
-    occured_at { Time.current }
+    eventable
+    user
+    occurred_at { Time.current }
     metadata { {} }
   end
 end

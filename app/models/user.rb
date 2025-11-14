@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :features, through: :features_users
 
   has_many :eventables, dependent: :destroy
+  has_many :event_entries, dependent: :destroy
 end
