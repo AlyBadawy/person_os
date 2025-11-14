@@ -40,7 +40,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_09_045841) do
     t.jsonb "metadata", default: {}, null: false
     t.string "name", null: false
     t.jsonb "schedule", default: {}, null: false
-    t.date "starts_on"
+    t.date "starts_on", null: false
     t.datetime "updated_at", null: false
     t.uuid "user_id", null: false
     t.index ["eventable_type_id"], name: "index_eventables_on_eventable_type_id"
