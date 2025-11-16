@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "esbuild app/javascript/react/index.tsx --bundle --outfile=app/assets/builds/react-bundle.js --loader:.tsx=tsx --loader:.ts=tsx",
-    "watch": "esbuild app/javascript/react/index.tsx --bundle --outfile=app/assets/builds/react-bundle.js --loader:.tsx=tsx --loader:.ts=tsx --watch",
+    "esbuild:base": "esbuild app/javascript/react/index.tsx --bundle --outfile=app/assets/builds/react-bundle.js --loader:.tsx=tsx --loader:.ts=tsx",
+    "build": "npm run esbuild:base",
+    "watch": "npm run esbuild:base -- --watch",
     "lint": "eslint 'app/javascript/**/*.{js,jsx,ts,tsx}' --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint 'app/javascript/**/*.{js,jsx,ts,tsx}' --ext .js,.jsx,.ts,.tsx --fix"
   },
