@@ -1,0 +1,30 @@
+{
+  "name": "person_os",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "esbuild app/javascript/react/index.tsx --bundle --outfile=app/assets/builds/react-bundle.js --loader:.tsx=tsx --loader:.ts=tsx",
+    "watch": "esbuild app/javascript/react/index.tsx --bundle --outfile=app/assets/builds/react-bundle.js --loader:.tsx=tsx --loader:.ts=tsx --watch",
+    "lint": "eslint 'app/javascript/**/*.{js,jsx,ts,tsx}' --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint 'app/javascript/**/*.{js,jsx,ts,tsx}' --ext .js,.jsx,.ts,.tsx --fix"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.10.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "esbuild": "^0.19.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.45.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-config-prettier": "^8.8.0"
+  }
+}

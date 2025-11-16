@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :api do
+    get "status" => "status#show"
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   devise_for :users
@@ -8,4 +12,6 @@ Rails.application.routes.draw do
   end
 
   root to: redirect("/users/sign_in")
+
+  get "dashboard" => "dashboard#index"
 end
