@@ -1,0 +1,5 @@
+node_modules/
+app/assets/builds/
+public/packs/
+public/packs-test/
+coverage/

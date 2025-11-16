@@ -91,6 +91,14 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - name: Install JavaScript dependencies
+        run: |
+          npm install
+          npm run build
       - name: Create and setup the database
         run: |
           bundle exec rails db:create
