@@ -10,10 +10,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_07_184929) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_09_045841) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "event_entries", id: :uuid, default: -> { "uuidv7()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.uuid "eventable_id"
+    t.jsonb "metadata", default: {}, null: false
+    t.datetime "occurred_at"
+    t.datetime "updated_at", null: false
+    t.uuid "user_id", null: false
+    t.index ["eventable_id"], name: "index_event_entries_on_eventable_id"
+    t.index ["user_id"], name: "index_event_entries_on_user_id"
+  end
+
+  create_table "eventable_types", id: :uuid, default: -> { "uuidv7()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.jsonb "metadata"
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_eventable_types_on_name", unique: true
+  end
+
+  create_table "eventables", id: :uuid, default: -> { "uuidv7()" }, force: :cascade do |t|
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.date "ends_on"
+    t.uuid "eventable_type_id", null: false
+    t.jsonb "metadata", default: {}, null: false
+    t.string "name", null: false
+    t.jsonb "schedule", default: {}, null: false
+    t.date "starts_on"
+    t.datetime "updated_at", null: false
+    t.uuid "user_id", null: false
+    t.index ["eventable_type_id"], name: "index_eventables_on_eventable_type_id"
+    t.index ["user_id", "eventable_type_id", "name"], name: "index_eventables_on_user_eventable_type_and_name", unique: true
+    t.index ["user_id"], name: "index_eventables_on_user_id"
+  end
+
+  create_table "features", id: :uuid, default: -> { "uuidv7()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.jsonb "metadata"
+    t.string "name"
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_features_on_name", unique: true
+  end
+
+  create_table "features_users", id: :uuid, default: -> { "uuidv7()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.uuid "feature_id", null: false
+    t.integer "quota"
+    t.datetime "updated_at", null: false
+    t.uuid "user_id", null: false
+    t.index ["feature_id"], name: "index_features_users_on_feature_id"
+    t.index ["user_id"], name: "index_features_users_on_user_id"
+  end
 
   create_table "users", id: :uuid, default: -> { "uuidv7()" }, force: :cascade do |t|
     t.datetime "confirmation_sent_at"
@@ -40,4 +93,11 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_07_184929) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
+
+  add_foreign_key "event_entries", "eventables"
+  add_foreign_key "event_entries", "users"
+  add_foreign_key "eventables", "eventable_types"
+  add_foreign_key "eventables", "users"
+  add_foreign_key "features_users", "features"
+  add_foreign_key "features_users", "users"
 end

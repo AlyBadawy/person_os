@@ -9,6 +9,7 @@ describe "EventableFrequency" do
         EventableFrequency.daily,
         EventableFrequency.weekly,
         EventableFrequency.bi_weekly,
+        EventableFrequency.monthly,
         EventableFrequency.custom_dates,
       )
     end
