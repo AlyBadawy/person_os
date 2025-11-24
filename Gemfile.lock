@@ -64,7 +64,7 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
-    activeadmin (4.0.0.beta18)
+    activeadmin (4.0.0.beta19)
       arbre (~> 2.0)
       csv
       formtastic (>= 5.0)
@@ -253,7 +253,7 @@ GEM
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
-    minitest (5.26.1)
+    minitest (5.26.2)
     msgpack (1.8.0)
     net-imap (0.5.12)
       date
@@ -533,7 +533,7 @@ PLATFORMS
 DEPENDENCIES
   aasm
   aasm-diagram
-  activeadmin (~> 4.0.0.beta16)
+  activeadmin (~> 4.0.0.beta19)
   activeadmin_assets
   bcrypt (~> 3.1.7)
   bootsnap
