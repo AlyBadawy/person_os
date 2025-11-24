@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "aasm"
-gem "activeadmin", "~> 4.0.0.beta16"
+gem "activeadmin", "~> 4.0.0.beta19"
 gem "activeadmin_assets"
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
